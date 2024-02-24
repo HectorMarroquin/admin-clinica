@@ -10,8 +10,19 @@ import { catchError, map, of } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
+  
+  user:any;
+  token:any;
 
-  constructor(private router: Router, public http: HttpClient) {}
+  constructor(private router: Router, public http: HttpClient) {
+    this.getLocalStorage();
+  }
+
+  getLocalStorage(){
+    const USER = localStorage.getItem("user");
+    this.user = JSON.parse(USER ? USER : '');
+    this.token = localStorage.getItem('token');
+  }
 
   login(email:string,password:string) {
     // localStorage.setItem('authenticated', 'true');
