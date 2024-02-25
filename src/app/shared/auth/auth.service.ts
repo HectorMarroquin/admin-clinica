@@ -19,9 +19,16 @@ export class AuthService {
   }
 
   getLocalStorage(){
-    const USER = localStorage.getItem("user");
-    this.user = JSON.parse(USER ? USER : '');
-    this.token = localStorage.getItem('token');
+    if(localStorage.getItem('token') && localStorage.getItem('user')){
+
+      const USER = localStorage.getItem("user");
+      this.user  = JSON.parse(USER ? USER : '');
+      this.token = localStorage.getItem('token');
+
+    }else{
+      this.user  = null;
+      this.token = null;
+    }
   }
 
   login(email:string,password:string) {

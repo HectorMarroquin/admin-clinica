@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit {
         if(resp){
           this.router.navigate([routes.adminDashboard]);
         }else{
-          console.log('USUARIO O CONTRASEÑA SON INCORRECTO O NO EXISTE');
           this.ERROR = true;
         }
       }, error =>{
