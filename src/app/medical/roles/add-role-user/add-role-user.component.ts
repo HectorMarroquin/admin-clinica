@@ -42,13 +42,14 @@ export class AddRoleUserComponent {
         this.valid_form = true;
         return;
       }
-      let data = {
+      const data = {
         name: this.name,
         permisions: this.permissions,
       };
-      console.log("enviando");
       this.RoleService.storeRoles(data).subscribe((resp:any) =>{
         console.log(resp);
+        this.name = '';
+        this.permissions = [];
       });
     }
 }
