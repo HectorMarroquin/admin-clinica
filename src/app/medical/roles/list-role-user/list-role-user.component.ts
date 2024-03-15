@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { RolesService } from '../service/roles.service';
 import { Sort } from '@angular/material/sort';
@@ -12,6 +12,7 @@ export class ListRoleUserComponent {
 
   public rolesList:any= [];
   dataSource!: MatTableDataSource<any>;
+  @ViewChild('closebutton') closebutton:any;
 
   public showFilter = false;
   public searchDataValue = '';
@@ -74,11 +75,17 @@ export class ListRoleUserComponent {
   deleteRol(){
 
     this.RoleService.deleteRoles(this.role_selected.id).subscribe( (resp:any) =>{
-      console.log(resp);
-      
+     
+      if(resp.message ===403 ){
+        //notificacion
+      }
+
       const index = this.rolesList.findIndex( (item:any) => item.id === this.role_selected.id );
+      
       if( index != -1){
         this.rolesList.splice(index,1);
+        this.role_selected = null;
+        this.closebutton.nativeElement.click();
       }
     });
 

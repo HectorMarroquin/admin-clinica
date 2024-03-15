@@ -20,6 +20,13 @@ export class RolesService {
 
     }
 
+    showRoles(role_id:string){
+      const headers = new HttpHeaders({'Authorization': 'Bearer '+this.authService.token});
+      const URL = URL_SERVICIOS+"/roles/"+role_id;
+      return this.http.get(URL,{headers: headers});
+
+    }
+
     storeRoles(data:any){
       const headers = new HttpHeaders({'Authorization': 'Bearer '+this.authService.token});
       const URL = URL_SERVICIOS+"/roles";
@@ -40,5 +47,7 @@ export class RolesService {
       return this.http.delete(URL,{headers: headers});
 
     }
+
+    
 
 }
