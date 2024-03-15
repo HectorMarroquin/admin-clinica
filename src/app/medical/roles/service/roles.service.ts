@@ -36,7 +36,7 @@ export class RolesService {
 
     deleteRoles(id_role:any){
       const headers = new HttpHeaders({'Authorization': 'Bearer '+this.authService.token});
-      const URL = URL_SERVICIOS+"/roles"+id_role;
+      const URL = URL_SERVICIOS+"/roles/"+id_role;
       return this.http.delete(URL,{headers: headers});
 
     }
