@@ -29,12 +29,12 @@ export class AuthGuard implements CanActivate {
       //   return false;
       // }
 
-      if(!this.auth.user || !this.auth.token){
+      if(!localStorage.getItem('token') || !localStorage.getItem('user')){
         this.router.navigate([routes.login]);
         return false;
       }
 
-      const token      = this.auth.token;
+      const token:any      = localStorage.getItem('token');
       const expiration = (JSON.parse(atob(token.split(".")[1]))).exp;
     
       if(Math.floor((new Date().getTime())/1000) >= expiration){
